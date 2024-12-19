@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import SkinCard from '../components/SkinCard';
+import SkinCard from '../components/SkinCard.jsx';
 import './Home.css';
 
 function Home() {
