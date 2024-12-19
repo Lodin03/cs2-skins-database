@@ -36,11 +36,14 @@ const skinSchema = new mongoose.Schema({
     finishStyle: String, // Finish style (e.g., Custom Paint Job)
     finishCatalog: String, // Finish catalog (e.g., 106)
     dateAdded: String, // Date added to the game (e.g., 4 October 2024)
-    update: String // Update name (e.g., The Armory)
+    update: String, // Update name (e.g., The Armory)
+    category: { type: String, enum: ['Pistol', 'Mid-Tier', 'Rifle', 'Knife', 'Gloves'], required: true }
   });
 
 // Create a Skin model from the schema
 const Skin = mongoose.model('Skin', skinSchema);
+
+module.exports = { Skin };
 
 // Route to get all skins
 app.get('/skins', async (req, res) => {
@@ -64,6 +67,44 @@ app.post('/skins', async (req, res) => {
     res.status(500).send('Error saving skin');
   }
 });
+
+// Route to update a skin by its ID
+app.put('/skins/:id', async (req, res) => {
+  try {
+    const { id } = req.params; // Extract ID from request parameters
+    const updateData = req.body; // Data to update
+
+    const updatedSkin = await Skin.findByIdAndUpdate(id, updateData, { new: true, runValidators: true });
+
+    if (!updatedSkin) {
+      return res.status(404).send('Skin not found'); // Handle if no skin matches the ID
+    }
+
+    res.status(200).json({ message: 'Skin updated successfully', updatedSkin }); // Return the updated skin
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error updating skin'); // Handle errors
+  }
+});
+
+
+// Route to delete a skin by its ID
+app.delete('/skins/:id', async (req, res) => {
+  try {
+    const { id } = req.params; // Extract ID from the request parameters
+    const deletedSkin = await Skin.findByIdAndDelete(id); // Find the document by ID and delete it
+
+    if (!deletedSkin) {
+      return res.status(404).send('Skin not found'); // Handle if no skin matches the ID
+    }
+
+    res.status(200).json({ message: 'Skin deleted successfully', deletedSkin }); // Return success response
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error deleting skin'); // Handle errors
+  }
+});
+
 
 // Start the server on port 5000
 const port = 5000;

@@ -1,0 +1,31 @@
+/* Dropdown container */
+.dropdown-menu {
+    position: absolute;
+    background-color: #444;
+    color: white;
+    list-style: none;
+    padding: 10px;
+    margin-top: 5px;
+    display: none;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 200px;
+  }
+  
+  /* Show dropdown when hovering over the parent list item */
+  .nav-links li:hover .dropdown-menu {
+    display: block;
+  }
+  
+  /* Style for individual dropdown items */
+  .dropdown-menu li {
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  /* Hover effect on dropdown items */
+  .dropdown-menu li:hover {
+    background-color: #555;
+  }
+  

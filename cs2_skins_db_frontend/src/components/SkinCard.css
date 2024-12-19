@@ -1,0 +1,40 @@
+/* Style for each skin card */
+.skin-card {
+  border: 2px solid #ccc; /* Light grey border */
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px; /* Rounded corners */
+  background-color: #171b29; /* Prussian Blue background */
+  width: 250px; /* Fixed width for each skin card */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow for some depth */
+  transition: transform 0.3s ease-in-out;
+  margin-bottom: 20px; /* Add space between cards */
+}
+
+/* Add hover effect for skin cards */
+.skin-card:hover {
+  transform: translateY(-10px); /* Lift effect on hover */
+}
+
+/* Style for the image inside each skin card */
+.skin-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px; /* Optional: round image corners */
+  margin-top: 10px;
+}
+
+/* Heading for the skin name */
+.skin-card h2 {
+  font-size: 1.2rem;
+  color: #ffffff; /* White text for contrast */
+  margin: 0;
+  padding: 0;
+}
+
+/* Style for the skin info text (rarity, collection, etc.) */
+.skin-card p {
+  color: #e0e0e0; /* Light gray color for general text */
+  font-size: 0.9rem;
+  margin-top: 10px;
+}

@@ -1,0 +1,21 @@
+/* Styling for the Home page */
+.home {
+    padding: 20px;
+    color: white;
+}
+
+.title {
+  font-size: 2rem;
+  text-align: center;
+  margin: 20px 0;
+}
+  
+/* Container for all the skin cards */
+.skins-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+  
