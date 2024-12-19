@@ -38,12 +38,25 @@ const skinSchema = new mongoose.Schema({
     dateAdded: String, // Date added to the game (e.g., 4 October 2024)
     update: String, // Update name (e.g., The Armory)
     category: { type: String, enum: ['Pistol', 'Mid-Tier', 'Rifle', 'Knife', 'Gloves'], required: true }
-  });
+});
 
 // Create a Skin model from the schema
 const Skin = mongoose.model('Skin', skinSchema);
 
 module.exports = { Skin };
+
+// Define the rarityOrder object for sorting by rarity
+const rarityOrder = {
+  "Extraordinary": 1, // Knife skin/glove
+  "Contraband": 2,
+  "Covert": 3,
+  "Classified": 4,
+  "Restricted": 5,
+  "Mil-Spec": 6,
+  "Industrial Grade": 7,
+  "Consumer Grade": 8
+};
+
 
 // Route to get all skins
 app.get('/skins', async (req, res) => {

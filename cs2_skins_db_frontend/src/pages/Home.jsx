@@ -14,7 +14,7 @@ function Home() {
 
   return (
     <div className="home">
-      <h1 className="title">All Skins</h1>
+      <h1 className="title">Unofficial CS2 Skins Database</h1>
       <div className="skins-container">
         {skins.map(skin => (
           <SkinCard key={skin._id} skin={skin} />
