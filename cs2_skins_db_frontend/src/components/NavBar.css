@@ -3,26 +3,24 @@
   align-items: center;
   background-color: #171b29;
   color: white;
-  padding: 10px 20px;
+  padding: 1rem 2rem;
 }
   
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 25px;
+  gap: 2rem;
 }
   
 .dropdown-menu {
   position: absolute;
   background-color: #121521;
-  color: white;
   list-style: none;
-  padding: 10px;
+  padding: .75rem;
   display: none;
-  border: 1.5px black solid;
+  border: 0.125rem black solid;
 }
   
 .nav-links li:hover .dropdown-menu {
   display: block;
 }
-  

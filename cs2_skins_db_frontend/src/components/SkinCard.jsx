@@ -17,7 +17,7 @@ function SkinCard({ skin }) {
   return (
     <div className="skin-card">
       <h2>{skin.name}</h2>
-      <p className="rarity-tag" style={{ border: `2px solid ${borderColor}`, backgroundColor: `${borderColor}`, color: "white"}}>{skin.rarity}</p>
+      <p className="rarity-tag" style={{ border: `0.25rem solid ${borderColor}`, backgroundColor: `${borderColor}`}}>{skin.rarity}</p>
       <img src={skin.imageUrl} alt={skin.name} />
       <p>{skin.collection}</p>
     </div>
