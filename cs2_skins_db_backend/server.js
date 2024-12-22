@@ -37,11 +37,34 @@ const skinSchema = new mongoose.Schema({
     finishCatalog: String, // Finish catalog (e.g., 106)
     dateAdded: String, // Date added to the game (e.g., 4 October 2024)
     update: String, // Update name (e.g., The Armory)
-    category: { type: String, enum: ['Pistol', 'Mid-Tier', 'Rifle', 'Knife', 'Gloves'], required: true }
+    category: { type: String, enum: ['Pistol', 'Mid-Tier', 'Rifle', 'Knife', 'Gloves'], required: true }, // Type of weapon/equipment
+    weaponType: String // Sub-category, type of weapon (USP-S, Butterfly Knife, Bloodhound Gloves etc.)
 });
 
 // Create a Skin model from the schema
 const Skin = mongoose.model('Skin', skinSchema);
+
+const skin1 = new Skin({
+  name: 'AK-47 | Inheritance',
+  rarity: 'Extraordinary',
+  collection: 'Operation Breakout Weapon Case',
+  imageUrl: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhh2MzYfi9B6dC3nY60m_7zO6-fzjwHvJEn2OqWotmi3gXt_BVtYD-ncIWcIA85YV-ErwK-ley-18e06oOJlyU3nvbOMA/512fx384f',
+  floatCap: { min: 0.00, max: 0.80 },
+  description: 'This custom paint job takes inspiration from traditional Chinese porcelain and Delft Blauw art.',
+  flavorText: 'A "family" heirloom, passed through generations', 
+  finishStyle: 'Gunsmith',
+  finishCatalog: '1171',
+  dateAdded: '7 February 2024',
+  update: 'A Call To Arms',
+  category: 'Rifle',
+  weaponType: 'AK-47'
+});
+
+/*
+skin1.save()
+  .then(() => console.log("Skin saved successfully!"))
+  .catch(err => console.error("Error saving skin:", err));
+*/
 
 module.exports = { Skin };
 
@@ -57,12 +80,25 @@ const rarityOrder = {
   "Consumer Grade": 8
 };
 
-
 // Route to get all skins
 app.get('/skins', async (req, res) => {
   try {
     const skins = await Skin.find(); // Fetch all skins
     res.json(skins); // Return skins as JSON
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error fetching skins');
+  }
+});
+
+// Route to get skins by weaponType
+app.get('/skins/:category/:type', async (req, res) => {
+  const { category, type } = req.params; // Extract category and weaponType from the URL parameters
+
+  console.log(`Received category: ${category}, type: ${type}`);
+  try {
+    const skins = await Skin.find({ category: category, weaponType: type });// Find skins with the specified category and weaponType
+    res.json(skins); // Return the filtered skins as JSON
   } catch (err) {
     console.error(err);
     res.status(500).send('Error fetching skins');

@@ -43,3 +43,16 @@
   font-weight: bold;
   text-transform: uppercase;
 }
+
+.case-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.case-img img {
+  width: 2rem;  /* Adjust the size of the image */
+  height: 1.75rem;
+  margin-right: 0.75rem; /* Space between the image and text */
+  padding-bottom: 0.75rem;
+}
