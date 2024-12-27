@@ -2,13 +2,12 @@
 A webapp acting as a database for skins from all collections and cases from the video game 'Counter-Strike 2'. With a clean and simple UI and a navbar to look at specific skins based on a criteria.
 
 # Features
-  • Comprehensive database of CS2 skins
-  • Filter skins by case, collection, weapon, and rarity
-  • Responsive design with a clean interface
+  1. Comprehensive database of CS2 skins
+  2. Filter skins by case, collection, weapon, and rarity
+  3. Responsive design with a clean interface
 
 # Installation steps
-  1. Clone repo to your local machine.
-     • git clone https://github.com/Lodin03/cs2-skins-database
+  1. Clone repo to your local machine with: git clone https://github.com/Lodin03/cs2-skins-database
   2. Navigate to the main project directory in your terminal
   3. Install dependencies with "npm install"
 
