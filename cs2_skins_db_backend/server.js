@@ -22,7 +22,7 @@ const skinSchema = new mongoose.Schema({
     name: String, // Skin name (e.g., M4A1-S | Vaporwave)
     rarity: { 
       type: String, 
-      enum: ["Consumer Grade", "Industrial Grade", "Mil-Spec", "Restricted", "Classified", "Covert", "Contraband", "Extraordinary"],
+      enum: ["Consumer Grade", "Industrial Grade", "Mil-Spec", "Restricted", "Classified", "Covert", "Extraordinary", "Contraband"],
       required: true 
     }, // Rarity of the skin
     collection: String, // Collection or case it comes from (e.g., Gallery Case)
@@ -45,17 +45,17 @@ const skinSchema = new mongoose.Schema({
 const Skin = mongoose.model('Skin', skinSchema);
 
 const skin1 = new Skin({
-  name: 'AK-47 | Inheritance',
-  rarity: 'Extraordinary',
-  collection: 'Operation Breakout Weapon Case',
-  imageUrl: 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhh2MzYfi9B6dC3nY60m_7zO6-fzjwHvJEn2OqWotmi3gXt_BVtYD-ncIWcIA85YV-ErwK-ley-18e06oOJlyU3nvbOMA/512fx384f',
-  floatCap: { min: 0.00, max: 0.80 },
-  description: 'This custom paint job takes inspiration from traditional Chinese porcelain and Delft Blauw art.',
-  flavorText: 'A "family" heirloom, passed through generations', 
-  finishStyle: 'Gunsmith',
-  finishCatalog: '1171',
-  dateAdded: '7 February 2024',
-  update: 'A Call To Arms',
+  name: 'AK-47 | Panthera onca',
+  rarity: 'Classified',
+  collection: 'Ancienct',
+  imageUrl: 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_ak47_cu_ak_jaguar_light_large.92dd85d59d2615eab90bf86d7e4df6ee9e095132.png',
+  floatCap: { min: 0.06, max: 1.00 },
+  description: 'The wood on the stock and handguard feature beautiful carvings, often stealing attention from the custom painted jaguar on the side.',
+  flavorText: "Who said you can't change your spots?",
+  finishStyle: 'Custom Paint Job',
+  finishCatalog: '1018',
+  dateAdded: '3 December 2020',
+  update: 'Operation Broken Fang',
   category: 'Rifle',
   weaponType: 'AK-47'
 });
@@ -70,8 +70,8 @@ module.exports = { Skin };
 
 // Define the rarityOrder object for sorting by rarity
 const rarityOrder = {
-  "Extraordinary": 1, // Knife skin/glove
-  "Contraband": 2,
+  "Contraband": 1, 
+  "Extraordinary": 2, // Knife skin/glove
   "Covert": 3,
   "Classified": 4,
   "Restricted": 5,
@@ -91,14 +91,48 @@ app.get('/skins', async (req, res) => {
   }
 });
 
+// Route to get skins by rarity
+app.get('/skins/rarity/:rarity', async (req, res) => {
+  const { rarity } = req.params;
+  try {
+    const skins = await Skin.find({ rarity: rarity });
+    res.json(skins);
+  } catch (err) {
+    console.error('Error fetching skins by rarity:', err);
+    res.status(500).send('Error fetching skins by rarity');
+  }
+});
+
+// Route to get skins by case
+app.get('/skins/case/:collection', async (req, res) => {
+  const { collection } = req.params;
+  try {
+    const skins = await Skin.find({ collection: collection }); 
+    res.json(skins);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error fetching skins by case');
+  }
+});
+
+// Route to get skins by collection
+app.get('/skins/collection/:collection', async (req, res) => {
+  const { collection } = req.params;
+  try {
+    const skins = await Skin.find({ collection: collection }); 
+    res.json(skins);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error fetching skins by case');
+  }
+});
+
 // Route to get skins by weaponType
 app.get('/skins/:category/:type', async (req, res) => {
   const { category, type } = req.params; // Extract category and weaponType from the URL parameters
-
-  console.log(`Received category: ${category}, type: ${type}`);
   try {
     const skins = await Skin.find({ category: category, weaponType: type });// Find skins with the specified category and weaponType
-    res.json(skins); // Return the filtered skins as JSON
+    res.json(skins);
   } catch (err) {
     console.error(err);
     res.status(500).send('Error fetching skins');
