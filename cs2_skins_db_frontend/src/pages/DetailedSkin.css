@@ -1,0 +1,96 @@
+/* Container for the detailed skin */
+.detailed-skin {
+    background-color: #171b29; /* Dark background for contrast */
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    max-width: 50rem;
+    margin: 2rem auto;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Title styling */
+  .detailed-skin h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Image of the skin */
+  .skin-image {
+    width: 100%;
+    max-width: 30rem;
+    height: auto;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .skin-image:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Styling for the rarity tag */
+  .rarity {
+    color: #000000;
+    font-size: 1.25rem;
+    font-weight: bold;
+    padding: 0.75rem 10rem;
+    border-radius: 0.25rem;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  /* Info container for better organization */
+  .skin-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  
+  /* Text styling for skin details */
+  .skin-info p {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+  }
+  
+  /* Float cap range styling */
+  .float-cap {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  
+  /* Subtle line separator */
+  .separator {
+    width: 80%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 1.5rem 0;
+  }
+
+  .case-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+  
+  .case-info img {
+    width: 3rem;  /* Slightly larger for better visibility */
+    height: 2.5rem;
+    margin-right: 1.2rem; 
+    padding-bottom: 0.5rem;
+  }
+  
+  .case-name {
+    font-size: 1.25rem; /* Increased text size but still clean */
+    font-weight: bold;
+    padding-bottom: 0.5rem;
+  }
+  
+  
+  

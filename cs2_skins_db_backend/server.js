@@ -44,41 +44,153 @@ const skinSchema = new mongoose.Schema({
 // Create a Skin model from the schema
 const Skin = mongoose.model('Skin', skinSchema);
 
-const skin1 = new Skin({
-  name: 'AK-47 | Panthera onca',
-  rarity: 'Classified',
-  collection: 'Ancienct',
-  imageUrl: 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_ak47_cu_ak_jaguar_light_large.92dd85d59d2615eab90bf86d7e4df6ee9e095132.png',
-  floatCap: { min: 0.06, max: 1.00 },
-  description: 'The wood on the stock and handguard feature beautiful carvings, often stealing attention from the custom painted jaguar on the side.',
-  flavorText: "Who said you can't change your spots?",
-  finishStyle: 'Custom Paint Job',
-  finishCatalog: '1018',
-  dateAdded: '3 December 2020',
-  update: 'Operation Broken Fang',
-  category: 'Rifle',
-  weaponType: 'AK-47'
-});
-
+const skins = [
+  {
+    name: 'Driver Gloves | Queen Jaguar',
+    rarity: 'Extraordinary',
+    collection: 'Operation Broken Fang Case',
+    imageUrl: 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/slick_gloves_slick_jaguar_yellow_light_large.f706695fc1cc89762777696d24cd2e22f50582aa.png',
+    floatCap: { min: 0.06, max: 0.80 },
+    description: 'These driving gloves offer protection from the elements while still maintaining tactile sensation.',
+    flavorText: '',
+    finishStyle: '',
+    finishCatalog: '10071',
+    dateAdded: '3 December 2020',
+    update: 'Operation Broken Fang',
+    category: 'Gloves',
+    weaponType: 'Driver Gloves'
+  },
+  {
+    name: 'Driver Gloves | Imperial Plaid',
+    rarity: 'Extraordinary',
+    collection: 'Clutch Case',
+    imageUrl: 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/slick_gloves_slick_plaid_purple_light_large.0315b76daffb839e03a9e543dc0d4a3abe716922.png',
+    floatCap: { min: 0.06, max: 0.80 },
+    description: 'These driving gloves offer protection from the elements while still maintaining tactile sensation. This pair of flannel and leather gloves has an imperial hue.',
+    flavorText: '',
+    finishStyle: '',
+    finishCatalog: '10042',
+    dateAdded: '16 February 2018',
+    update: 'Clutch Case',
+    category: 'Gloves',
+    weaponType: 'Driver Gloves'
+  },
+  {
+    name: 'Driver Gloves | King Snake',
+    rarity: 'Extraordinary',
+    collection: 'Clutch Case',
+    imageUrl: 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/slick_gloves_slick_snakeskin_white_light_large.f6a54c7a3cf91ecbe0a712bb2126bfe77f86825e.png',
+    floatCap: { min: 0.06, max: 0.80 },
+    description: 'These driving gloves offer protection from the elements while still maintaining tactile sensation. It has been crafted out of white leather and snakeskin.',
+    flavorText: '',
+    finishStyle: '',
+    finishCatalog: '10041',
+    dateAdded: '16 February 2018',
+    update: 'Clutch Case',
+    category: 'Gloves',
+    weaponType: 'Driver Gloves'
+  },
+  {
+    name: 'Driver Gloves | Overtake',
+    rarity: 'Extraordinary',
+    collection: 'Clutch Case',
+    imageUrl: 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/slick_gloves_slick_stitched_black_orange_light_large.6cd14c51b9f239f57cf20603a13a8f9b7efb42ed.png',
+    floatCap: { min: 0.06, max: 0.80 },
+    description: 'These driving gloves offer protection from the elements while still maintaining tactile sensation. Speed is of the essence with these classic black and tan leather gloves.',
+    flavorText: '',
+    finishStyle: '',
+    finishCatalog: '10043',
+    dateAdded: '16 February 2018',
+    update: 'Clutch Case',
+    category: 'Gloves',
+    weaponType: 'Driver Gloves'
+  },
+  {
+    name: 'Driver Gloves | Racing Green',
+    rarity: 'Extraordinary',
+    collection: 'Clutch Case',
+    imageUrl: 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/slick_gloves_slick_stitched_green_grey_light_large.808fca3933fe16b20eb0cc26bd78fbbc47988dad.png',
+    floatCap: { min: 0.06, max: 0.80 },
+    description: 'These driving gloves offer protection from the elements while still maintaining tactile sensation.',
+    flavorText: '',
+    finishStyle: '',
+    finishCatalog: '10044',
+    dateAdded: '16 February 2018',
+    update: 'Clutch Case',
+    category: 'Gloves',
+    weaponType: 'Driver Gloves'
+  },
+  {
+    name: 'Driver Gloves | Crimson Weave',
+    rarity: 'Extraordinary',
+    collection: 'Operation Hydra Case',
+    imageUrl: 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/slick_gloves_slick_red_light_large.137455fd6486c53fef15a523f86e2928743de97e.png',
+    floatCap: { min: 0.06, max: 0.80 },
+    description: 'hese driving gloves offer protection from the elements while still maintaining tactile sensation. Black suede has been interwoven with scarlet leather to give these gloves a timeless look.',
+    flavorText: 'Leave your mark, not your fingerprints',
+    finishStyle: '',
+    finishCatalog: '10016',
+    dateAdded: '29 November 2016',
+    update: 'Operation Hydra',
+    category: 'Gloves',
+    weaponType: 'Driver Gloves'
+  },
+  {
+    name: 'Driver Gloves | Diamondback',
+    rarity: 'Extraordinary',
+    collection: 'Operation Hydra Case',
+    imageUrl: 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/slick_gloves_slick_snakeskin_yellow_light_large.017f2c7fab2cecceb4444c05c80fa238f46264e0.png',
+    floatCap: { min: 0.06, max: 0.80 },
+    description: 'These driving gloves offer protection from the elements while still maintaining tactile sensation. It has been crafted out of a mix of tan leather, black leather, and snakeskin.',
+    flavorText: 'Standard issue is for suckers... - Imogen, Arms Dealer In Training',
+    finishStyle: '',
+    finishCatalog: '10040',
+    dateAdded: '29 November 2016',
+    update: 'Operation Hydra',
+    category: 'Gloves',
+    weaponType: 'Driver Gloves'
+  },
+  {
+    name: 'Driver Gloves | Convoy',
+    rarity: 'Extraordinary',
+    collection: 'Operation Hydra Case',
+    imageUrl: 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/slick_gloves_slick_military_light_large.8da6c198b3bfb8a70f63bbd99a02ce8fc09c9a95.png',
+    floatCap: { min: 0.06, max: 0.80 },
+    description: 'These driving gloves offer protection from the elements while still maintaining tactile sensation. It has been made with a mix of brown soft leather and dyed suede.',
+    flavorText: 'Sometimes discretion is called for',
+    finishStyle: '',
+    finishCatalog: '10015',
+    dateAdded: '29 November 2016',
+    update: 'Operation Hydra',
+    category: 'Gloves',
+    weaponType: 'Driver Gloves'
+  },
+  {
+    name: 'Driver Gloves | Lunar Weave',
+    rarity: 'Extraordinary',
+    collection: 'Operation Hydra Case',
+    imageUrl: 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/slick_gloves_slick_black_light_large.1a38e5968c549d49e791cf55bc4f89232e19e26f.png',
+    floatCap: { min: 0.06, max: 0.80 },
+    description: 'These driving gloves offer protection from the elements while still maintaining tactile sensation. Midnight blue suede has been interwoven with jet black leather to give these gloves a timeless look.',
+    flavorText: 'Keeps the blood off your hands...metaphorically speaking',
+    finishStyle: '',
+    finishCatalog: '10013',
+    dateAdded: '29 November 2016',
+    update: 'Operation Hydra',
+    category: 'Gloves',
+    weaponType: 'Driver Gloves'
+  },
+];
 /*
-skin1.save()
-  .then(() => console.log("Skin saved successfully!"))
-  .catch(err => console.error("Error saving skin:", err));
+// Insert the array into the database
+Skin.insertMany(skins)
+  .then(() => console.log('Skins added successfully!'))
+  .catch(err => console.error('Error adding skins:', err));
+
 */
 
-module.exports = { Skin };
 
-// Define the rarityOrder object for sorting by rarity
-const rarityOrder = {
-  "Contraband": 1, 
-  "Extraordinary": 2, // Knife skin/glove
-  "Covert": 3,
-  "Classified": 4,
-  "Restricted": 5,
-  "Mil-Spec": 6,
-  "Industrial Grade": 7,
-  "Consumer Grade": 8
-};
+module.exports = { Skin };
 
 // Route to get all skins
 app.get('/skins', async (req, res) => {
@@ -88,6 +200,21 @@ app.get('/skins', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).send('Error fetching skins');
+  }
+});
+
+// Route to get a skin by name
+app.get('/skins/:skinId', async (req, res) => {
+  const { skinId } = req.params;
+  try {
+    const skin = await Skin.findById(skinId);
+    if (!skin) {
+      return res.status(404).send('Skin not found');
+    }
+    res.json(skin);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error fetching skin');
   }
 });
 

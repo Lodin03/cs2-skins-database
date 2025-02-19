@@ -1,6 +1,7 @@
 import React from 'react';
 import './SkinCard.css';
 import rarityColors from '../constants/rarityColors';
+import { Link } from 'react-router-dom';
 
 function SkinCard({ skin }) {  
   const borderColor = rarityColors[skin.rarity]
@@ -16,10 +17,12 @@ function SkinCard({ skin }) {
 
   return (
     <div className="skin-card">
-      <h2>{skin.name}</h2>
-      <p className="rarity-tag" style={{ border: `0.25rem solid ${borderColor}`, backgroundColor: `${borderColor}`}}>{skin.rarity}</p>
-      <img src={skin.imageUrl} alt={skin.name} />
-      <p className="case-img"><img src={caseImg} alt={"Collection name" + skin.collection}/> {skin.collection}</p>
+      <Link to={`/skins/${skin._id}`} className="skin-card-link">
+        <h2>{skin.name}</h2>
+        <p className="rarity-tag" style={{ border: `0.25rem solid ${borderColor}`, backgroundColor: `${borderColor}`}}>{skin.rarity}</p>
+        <img src={skin.imageUrl} alt={skin.name} />
+        <p className="case-img"><img src={caseImg} alt={"Collection name" + skin.collection}/> {skin.collection}</p>
+      </Link>
     </div>
   );
 }
